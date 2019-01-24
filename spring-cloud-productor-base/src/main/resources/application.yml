@@ -1,0 +1,37 @@
+server:
+  port: 18000
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/,http://localhost:8762/eureka/,http://localhost:8763/eureka/
+
+spring:
+  application:
+    name: base-service-productor
+  datasource:
+    url: jdbc:mysql://192.168.2.84:3306/auth
+    username: root
+    password: shuige2016
+    druid:
+      initial-size: 2
+      min-idle: 1
+      max-active: 50
+      max-wait: 60000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: select 'x'
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 50
+      max-open-prepared-statements: 20
+      filters: config, wall, stat
+      connection-properties: druid.stat.slowSqlMillis=200;druid.stat.logSlowSql=true;config.decrypt=false
+      default-auto-commit: false
+
+mybatis:
+  mapper-locations:
+  - classpath:mapper/*.xml
+  type-aliases-package: com.hyy.invo.domain
